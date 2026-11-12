@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 140" width="1160" height="140" fill="none" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Pretendard', sans-serif;">
+  <defs>
+    <filter id="shadow-light" x="-5%" y="-5%" width="110%" height="120%" filterUnits="objectBoundingBox">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow-light" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1: Cart -->
+  <g transform="translate(10, 16)" filter="url(#shadow-light)">
+    <rect width="195" height="106" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="14" y="14" width="56" height="22" rx="6" fill="#F1F5F9"/>
+    <text x="42" y="29" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">STEP 1</text>
+    <text x="14" y="58" font-size="15" font-weight="700" fill="#0F172A">① 장바구니 (/cart)</text>
+    <text x="14" y="80" font-size="12" fill="#64748B">[주문서 작성 진행 →]</text>
+    <circle cx="170" cy="25" r="3" fill="#94A3B8"/>
+  </g>
+
+  <!-- Connector 1 -> 2 -->
+  <path d="M 211 69 L 235 69" stroke="#CBD5E1" stroke-width="2" marker-end="url(#arrow-light)"/>
+
+  <!-- Step 2: Checkout Form -->
+  <g transform="translate(241, 16)" filter="url(#shadow-light)">
+    <rect width="195" height="106" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="14" y="14" width="56" height="22" rx="6" fill="#EEF2FF"/>
+    <text x="42" y="29" font-size="11" font-weight="700" fill="#4F46E5" text-anchor="middle">STEP 2</text>
+    <text x="14" y="58" font-size="15" font-weight="700" fill="#0F172A">② 체크아웃 (/checkout)</text>
+    <text x="14" y="80" font-size="12" fill="#64748B">배송지 &amp; 결제수단 선택</text>
+    <text x="14" y="98" font-size="11" fill="#4F46E5" font-weight="600">Stripe PG · B2B 외상</text>
+  </g>
+
+  <!-- Connector 2 -> 3 -->
+  <path d="M 442 69 L 466 69" stroke="#93C5FD" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Step 3: Pay Action -->
+  <g transform="translate(472, 16)" filter="url(#shadow-light)">
+    <rect width="195" height="106" rx="14" fill="#F8FAFC" stroke="#3B82F6" stroke-width="2"/>
+    <rect x="14" y="14" width="60" height="22" rx="6" fill="#DBEAFE"/>
+    <text x="44" y="29" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="middle">ACTION</text>
+    <text x="14" y="58" font-size="15" font-weight="700" fill="#1E40AF">③ 결제 승인 요청</text>
+    <text x="14" y="80" font-size="12" font-weight="600" fill="#2563EB">[🔒 115,500원 결제]</text>
+    <text x="14" y="98" font-size="11" fill="#64748B">Server Action 호출</text>
+  </g>
+
+  <!-- Connector 3 -> 4 -->
+  <path d="M 673 69 L 697 69" stroke="#6EE7B7" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 4: Success -->
+  <g transform="translate(703, 16)" filter="url(#shadow-light)">
+    <rect width="195" height="106" rx="14" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+    <rect x="14" y="14" width="70" height="22" rx="6" fill="#DCFCE7"/>
+    <text x="49" y="29" font-size="11" font-weight="700" fill="#15803D" text-anchor="middle">COMPLETE</text>
+    <text x="14" y="58" font-size="15" font-weight="700" fill="#14532D">④ 주문 완료</text>
+    <text x="14" y="80" font-size="12" font-weight="600" fill="#16A34A">/checkout/success</text>
+    <text x="14" y="98" font-size="11" fill="#4B5563">주문번호 4 &amp; 출고안내</text>
+  </g>
+
+  <!-- Connector 4 -> 5 -->
+  <path d="M 904 69 L 928 69" stroke="#C4B5FD" stroke-width="2" marker-end="url(#arrow-purple)"/>
+
+  <!-- Step 5: Stripe Dashboard -->
+  <g transform="translate(934, 16)" filter="url(#shadow-light)">
+    <rect width="215" height="106" rx="14" fill="#FAF5FF" stroke="#8B5CF6" stroke-width="2"/>
+    <rect x="14" y="14" width="74" height="22" rx="6" fill="#EDE9FE"/>
+    <text x="51" y="29" font-size="11" font-weight="700" fill="#6D28D9" text-anchor="middle">PG VERIFY</text>
+    <text x="14" y="58" font-size="14.5" font-weight="700" fill="#5B21B6">⑤ Stripe 원장 검증</text>
+    <text x="14" y="80" font-size="12" font-weight="600" fill="#7C3AED">Transactions &gt; Payments</text>
+    <text x="14" y="98" font-size="11" fill="#6D28D9">₩105,000 (Uncaptured)</text>
+  </g>
+</svg>

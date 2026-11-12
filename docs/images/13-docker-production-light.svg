@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 640" width="860" height="640" fill="none" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Pretendard', sans-serif;">
+  <defs>
+    <filter id="shadow-light" x="-5%" y="-5%" width="110%" height="115%" filterUnits="objectBoundingBox">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrow-right-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrow-right-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+  </defs>
+
+  <!-- Title Section -->
+  <g transform="translate(20, 20)">
+    <rect width="820" height="48" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="24" y="30" font-size="16" font-weight="700" fill="#0F172A">Medusa v2 Multi-stage 프로덕션 컨테이너 패키징 &amp; 격리 운영 스택</text>
+    <rect x="690" y="12" width="114" height="24" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+    <text x="747" y="28" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="middle">Production-Ready</text>
+  </g>
+
+  <!-- ==================== PART 1: MULTI-STAGE DOCKER BUILD ==================== -->
+  <g transform="translate(20, 84)" filter="url(#shadow-light)">
+    <rect width="820" height="250" rx="14" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.75"/>
+    
+    <!-- Stage Header -->
+    <rect x="20" y="14" width="76" height="22" rx="6" fill="#EFF6FF"/>
+    <text x="58" y="29" font-size="11" font-weight="700" fill="#2563EB" text-anchor="middle">SECTION 1</text>
+    <text x="108" y="30" font-size="14.5" font-weight="700" fill="#0F172A">3-Stage Multi-stage Dockerfile 파이프라인 (Node 22 LTS Alpine)</text>
+
+    <!-- Stage 1 Box: deps -->
+    <g transform="translate(20, 48)">
+      <rect width="240" height="182" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.25"/>
+      <rect x="12" y="12" width="100" height="20" rx="5" fill="#E2E8F0"/>
+      <text x="62" y="26" font-size="10.5" font-weight="700" fill="#334155" text-anchor="middle">Stage 1: deps</text>
+      <text x="12" y="50" font-size="12" font-weight="700" fill="#0F172A">의존성 캐시 계층</text>
+      <text x="12" y="70" font-size="11" fill="#475569">• FROM node:22-alpine</text>
+      <text x="12" y="88" font-size="11" fill="#475569">• apk add libc6-compat</text>
+      <text x="12" y="106" font-size="11" fill="#475569">• COPY package*.json ./</text>
+      <text x="12" y="124" font-size="11" fill="#475569">• npm ci (모든 패키지)</text>
+      <rect x="12" y="144" width="216" height="26" rx="6" fill="#F1F5F9"/>
+      <text x="120" y="161" font-size="10" font-weight="600" fill="#64748B" text-anchor="middle">빌드 캐시 재활용 극대화</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 268 139 L 298 139" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrow-right-blue)"/>
+
+    <!-- Stage 2 Box: builder -->
+    <g transform="translate(306, 48)">
+      <rect width="246" height="182" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.25"/>
+      <rect x="12" y="12" width="112" height="20" rx="5" fill="#DBEAFE"/>
+      <text x="68" y="26" font-size="10.5" font-weight="700" fill="#1D4ED8" text-anchor="middle">Stage 2: builder</text>
+      <text x="12" y="50" font-size="12" font-weight="700" fill="#0F172A">컴파일 &amp; 의존성 프루닝</text>
+      <text x="12" y="70" font-size="11" fill="#475569">• COPY source files</text>
+      <text x="12" y="88" font-size="11" fill="#475569">• npm run build (TS+Vite)</text>
+      <text x="12" y="106" font-size="11" fill="#475569">• npm prune --production</text>
+      <text x="12" y="124" font-size="11" fill="#475569">• npm run postinstall</text>
+      <rect x="12" y="144" width="222" height="26" rx="6" fill="#EFF6FF"/>
+      <text x="123" y="161" font-size="10" font-weight="600" fill="#2563EB" text-anchor="middle">Admin 번들 &amp; 순수 JS 추출</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 560 139 L 590 139" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrow-right-blue)"/>
+
+    <!-- Stage 3 Box: runner -->
+    <g transform="translate(598, 48)">
+      <rect width="202" height="182" rx="10" fill="#EFF6FF" stroke="#60A5FA" stroke-width="1.5"/>
+      <rect x="12" y="12" width="110" height="20" rx="5" fill="#BFDBFE"/>
+      <text x="67" y="26" font-size="10.5" font-weight="700" fill="#1E40AF" text-anchor="middle">Stage 3: runner</text>
+      <text x="12" y="50" font-size="12" font-weight="700" fill="#0F172A">보안 런타임 이미지</text>
+      <text x="12" y="70" font-size="11" fill="#1E293B">• dumb-init (PID 1)</text>
+      <text x="12" y="88" font-size="11" fill="#1E293B">• Non-root USER node</text>
+      <text x="12" y="106" font-size="11" fill="#1E293B">• COPY .medusa/server</text>
+      <text x="12" y="124" font-size="11" fill="#1E293B">• COPY public/ (Admin UI)</text>
+      <rect x="12" y="144" width="178" height="26" rx="6" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+      <text x="101" y="161" font-size="10.5" font-weight="700" fill="#15803D" text-anchor="middle">용량 최적화 (684MB)</text>
+    </g>
+  </g>
+
+  <!-- Connector Between Sections -->
+  <path d="M 430 334 L 430 354" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-down-blue)"/>
+
+  <!-- ==================== PART 2: DOCKER COMPOSE ISOLATED STACK ==================== -->
+  <g transform="translate(20, 360)" filter="url(#shadow-light)">
+    <rect width="820" height="258" rx="14" fill="#FFFFFF" stroke="#10B981" stroke-width="1.75"/>
+    
+    <!-- Compose Header -->
+    <rect x="20" y="14" width="76" height="22" rx="6" fill="#ECFDF5"/>
+    <text x="58" y="29" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">SECTION 2</text>
+    <text x="108" y="30" font-size="14.5" font-weight="700" fill="#0F172A">docker-compose.prod.yml 격리 운영 스택 (acme-medusa-prod 네임스페이스)</text>
+
+    <!-- Container 1: PostgreSQL 16 -->
+    <g transform="translate(20, 48)">
+      <rect width="236" height="190" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.25"/>
+      <rect x="12" y="12" width="140" height="20" rx="5" fill="#E2E8F0"/>
+      <text x="82" y="26" font-size="10.5" font-weight="700" fill="#1E293B" text-anchor="middle">acme-prod-postgres</text>
+      <text x="12" y="52" font-size="12" font-weight="700" fill="#0F172A">PostgreSQL 16 Alpine</text>
+      <text x="12" y="74" font-size="11" fill="#475569">• 호스트 포트: <tspan font-weight="700" fill="#0F172A">5433:5432</tspan></text>
+      <text x="12" y="94" font-size="11" fill="#475569">• 데이터 볼륨: prod_pgdata</text>
+      <text x="12" y="114" font-size="11" fill="#475569">• DATABASE_SSL=false 지원</text>
+      <rect x="12" y="132" width="212" height="44" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+      <circle cx="26" cy="154" r="4" fill="#16A34A"/>
+      <text x="36" y="149" font-size="10.5" font-weight="700" fill="#166534">Healthcheck 통과 시</text>
+      <text x="36" y="165" font-size="10" fill="#15803D">pg_isready -U medusa_user</text>
+    </g>
+
+    <!-- Container 2: Redis 7 -->
+    <g transform="translate(272, 48)">
+      <rect width="216" height="190" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.25"/>
+      <rect x="12" y="12" width="126" height="20" rx="5" fill="#FEE2E2"/>
+      <text x="75" y="26" font-size="10.5" font-weight="700" fill="#991B1B" text-anchor="middle">acme-prod-redis</text>
+      <text x="12" y="52" font-size="12" font-weight="700" fill="#0F172A">Redis 7 Alpine</text>
+      <text x="12" y="74" font-size="11" fill="#475569">• 호스트 포트: <tspan font-weight="700" fill="#0F172A">6380:6379</tspan></text>
+      <text x="12" y="94" font-size="11" fill="#475569">• 데이터 볼륨: prod_redisdata</text>
+      <text x="12" y="114" font-size="11" fill="#475569">• 이벤트 버스 &amp; 세션 캐시</text>
+      <rect x="12" y="132" width="192" height="44" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+      <circle cx="26" cy="154" r="4" fill="#16A34A"/>
+      <text x="36" y="149" font-size="10.5" font-weight="700" fill="#166534">Healthcheck 통과 시</text>
+      <text x="36" y="165" font-size="10" fill="#15803D">redis-cli ping (PONG)</text>
+    </g>
+
+    <!-- Connector to App -->
+    <path d="M 496 143 L 504 143" stroke="#64748B" stroke-width="1.5"/>
+
+    <!-- Container 3: acme-prod-app -->
+    <g transform="translate(506, 48)">
+      <rect width="294" height="190" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+      <rect x="12" y="12" width="144" height="20" rx="5" fill="#DCFCE7"/>
+      <text x="84" y="26" font-size="10.5" font-weight="700" fill="#166534" text-anchor="middle">acme-prod-app</text>
+      <text x="12" y="52" font-size="12" font-weight="700" fill="#0F172A">Medusa v2 백엔드 &amp; Admin</text>
+      <text x="12" y="74" font-size="11" fill="#1E293B">• 호스트 포트: <tspan font-weight="700" fill="#059669">9001:9000</tspan> (개발포트 분리)</text>
+      
+      <!-- entrypoint execution list -->
+      <rect x="12" y="86" width="270" height="90" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="20" y="104" font-size="10" font-weight="700" fill="#047857">entrypoint.sh 자동 부팅 시퀀스:</text>
+      <text x="20" y="122" font-size="9.5" fill="#334155">1. PostgreSQL 연결 헬스체크 폴링 대기</text>
+      <text x="20" y="138" font-size="9.5" fill="#334155">2. npx medusa db:migrate 자동 마이그레이션</text>
+      <text x="20" y="154" font-size="9.5" fill="#334155">3. 관리자(admin@acme.local) 자동 생성</text>
+      <text x="20" y="170" font-size="9.5" font-weight="600" fill="#0F172A">4. medusa start 코어 + Admin UI 서빙</text>
+    </g>
+  </g>
+</svg>

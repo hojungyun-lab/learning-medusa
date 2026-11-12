@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 620" width="860" height="620" fill="none" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Pretendard', sans-serif;">
+  <defs>
+    <filter id="shadow-light" x="-5%" y="-5%" width="110%" height="115%" filterUnits="objectBoundingBox">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-right-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrow-right-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== STEP 1 ==================== -->
+  <g transform="translate(20, 20)" filter="url(#shadow-light)">
+    <rect width="820" height="88" rx="14" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.75"/>
+    <!-- Tags -->
+    <rect x="20" y="16" width="62" height="22" rx="6" fill="#EEF2FF"/>
+    <text x="51" y="31" font-size="11" font-weight="700" fill="#4F46E5" text-anchor="middle">STEP 1</text>
+    <rect x="90" y="16" width="90" height="22" rx="6" fill="#F1F5F9"/>
+    <text x="135" y="31" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">BOOTSTRAP</text>
+    <!-- Right Badge -->
+    <rect x="638" y="16" width="162" height="24" rx="12" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+    <circle cx="654" cy="28" r="4" fill="#16A34A"/>
+    <text x="666" y="32" font-size="11.5" font-weight="700" fill="#15803D">2 Subscribers Loaded</text>
+    <!-- Texts -->
+    <text x="20" y="58" font-size="15" font-weight="700" fill="#0F172A">Medusa 백엔드 부팅 &amp; 구독자(Subscribers) 자동 감지 및 로드</text>
+    <text x="20" y="77" font-size="12" fill="#64748B">src/subscribers/ 폴더 감지 ➔ order-placed.ts, order-fulfillment-created.ts 자동 초기화 및 Redis Event Bus 리스너 등록</text>
+  </g>
+
+  <!-- Connector 1 -> 2 -->
+  <path d="M 430 108 L 430 136" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-down)"/>
+  <rect x="315" y="112" width="230" height="20" rx="10" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="430" y="126" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">스토어프론트 주문 결제 완료 (체크아웃)</text>
+
+  <!-- ==================== STEP 2 ==================== -->
+  <g transform="translate(20, 142)" filter="url(#shadow-light)">
+    <rect width="820" height="148" rx="14" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2"/>
+    <!-- Header Tags -->
+    <rect x="20" y="14" width="62" height="22" rx="6" fill="#EFF6FF"/>
+    <text x="51" y="29" font-size="11" font-weight="700" fill="#2563EB" text-anchor="middle">STEP 2</text>
+    <rect x="90" y="14" width="138" height="22" rx="6" fill="#DBEAFE"/>
+    <text x="159" y="29" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="middle">EVENT: order.placed</text>
+    <text x="240" y="30" font-size="14.5" font-weight="700" fill="#0F172A">스토어프론트 주문 결제 ➔ order.placed 이벤트 비동기 발행 및 분기</text>
+
+    <!-- Sub-box 1: Trigger -->
+    <g transform="translate(20, 46)">
+      <rect width="210" height="88" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
+      <text x="14" y="25" font-size="12.5" font-weight="700" fill="#0F172A">🛒 스토어프론트 결제</text>
+      <text x="14" y="45" font-size="11" fill="#64748B">/checkout (신용카드/PG)</text>
+      <rect x="14" y="55" width="168" height="22" rx="5" fill="#EFF6FF"/>
+      <text x="22" y="70" font-size="10.5" font-weight="700" fill="#2563EB">⚡ 메인 결제 즉시 200 OK</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 238 90 L 258 90" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrow-right-blue)"/>
+
+    <!-- Sub-box 2: Redis Event Bus -->
+    <g transform="translate(266, 46)">
+      <rect width="210" height="88" rx="10" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.2"/>
+      <text x="14" y="25" font-size="12.5" font-weight="700" fill="#B91C1C">📡 Redis Event Bus</text>
+      <text x="14" y="45" font-size="10.5" font-weight="600" fill="#DC2626">channel: "order.placed"</text>
+      <rect x="14" y="55" width="180" height="22" rx="5" fill="#FEE2E2"/>
+      <text x="22" y="70" font-size="10" font-weight="700" fill="#991B1B">Job Queue 비동기 디스패치</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 484 90 L 504 90" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrow-right-blue)"/>
+
+    <!-- Sub-box 3: Worker Terminal Logs -->
+    <g transform="translate(512, 46)">
+      <rect width="288" height="88" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+      <rect x="10" y="8" width="160" height="18" rx="4" fill="#0F172A"/>
+      <text x="16" y="21" font-size="9.5" font-weight="700" fill="#38BDF8">TERMINAL LOG VERIFIED</text>
+      <text x="12" y="43" font-size="11" font-weight="600" fill="#1E293B">🏢 [ERP] 사내 ERP 주문 등록 (254ms)</text>
+      <text x="12" y="60" font-size="11" font-weight="600" fill="#1E293B">📦 [WMS] 물류센터 피킹 지시서 발행 (112ms)</text>
+      <text x="12" y="77" font-size="11" font-weight="600" fill="#16A34A">💬 [알림톡] 주문 접수 카카오톡 발송 완료</text>
+    </g>
+  </g>
+
+  <!-- Connector 2 -> 3 -->
+  <path d="M 430 290 L 430 318" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-down)"/>
+  <rect x="315" y="294" width="230" height="20" rx="10" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="430" y="308" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">백오피스 관리자 출고 승인 (Fulfillment)</text>
+
+  <!-- ==================== STEP 3 ==================== -->
+  <g transform="translate(20, 324)" filter="url(#shadow-light)">
+    <rect width="820" height="148" rx="14" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2"/>
+    <!-- Header Tags -->
+    <rect x="20" y="14" width="62" height="22" rx="6" fill="#FEF3C7"/>
+    <text x="51" y="29" font-size="11" font-weight="700" fill="#D97706" text-anchor="middle">STEP 3</text>
+    <rect x="90" y="14" width="180" height="22" rx="6" fill="#FDE68A"/>
+    <text x="180" y="29" font-size="11" font-weight="700" fill="#92400E" text-anchor="middle">order.fulfillment_created</text>
+    <text x="282" y="30" font-size="14.5" font-weight="700" fill="#0F172A">관리자 출고 승인 ➔ fulfillment_created 이벤트 비동기 분기</text>
+
+    <!-- Sub-box 1: Trigger -->
+    <g transform="translate(20, 46)">
+      <rect width="210" height="88" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
+      <text x="14" y="25" font-size="12.5" font-weight="700" fill="#0F172A">📦 관리자 출고 승인</text>
+      <text x="14" y="45" font-size="11" fill="#64748B">Create Fulfillment 버튼</text>
+      <rect x="14" y="55" width="176" height="22" rx="5" fill="#FEF3C7"/>
+      <text x="22" y="70" font-size="10.5" font-weight="700" fill="#D97706">운송장 발급 &amp; 재고 차감</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 238 90 L 258 90" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-right-amber)"/>
+
+    <!-- Sub-box 2: Redis Event Bus -->
+    <g transform="translate(266, 46)">
+      <rect width="210" height="88" rx="10" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.2"/>
+      <text x="14" y="25" font-size="12.5" font-weight="700" fill="#B91C1C">📡 Redis Event Bus</text>
+      <text x="14" y="45" font-size="10" font-weight="600" fill="#DC2626">"order.fulfillment_created"</text>
+      <rect x="14" y="55" width="180" height="22" rx="5" fill="#FEE2E2"/>
+      <text x="22" y="70" font-size="10" font-weight="700" fill="#991B1B">물류/배송 워커 큐 푸시</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 484 90 L 504 90" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-right-amber)"/>
+
+    <!-- Sub-box 3: Worker Terminal Logs -->
+    <g transform="translate(512, 46)">
+      <rect width="288" height="88" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+      <rect x="10" y="8" width="160" height="18" rx="4" fill="#0F172A"/>
+      <text x="16" y="21" font-size="9.5" font-weight="700" fill="#FCD34D">TERMINAL LOG VERIFIED</text>
+      <text x="12" y="43" font-size="11" font-weight="600" fill="#1E293B">🚚 [CJ택배] 집하 EDI 전문 전송 (310ms)</text>
+      <text x="12" y="60" font-size="11" font-weight="600" fill="#1E293B">💬 [알림톡] 배송 시작 및 운송장 알림톡 발송</text>
+      <text x="12" y="77" font-size="11" font-weight="600" fill="#16A34A">🔄 [UI] 스토어프론트 출고완료 배지 연동</text>
+    </g>
+  </g>
+
+  <!-- Connector 3 -> 4 -->
+  <path d="M 430 472 L 430 500" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-down)"/>
+  <rect x="315" y="476" width="230" height="20" rx="10" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="430" y="490" font-size="10.5" font-weight="600" fill="#475569" text-anchor="middle">Redis 메시지 브로커 상태 모니터링</text>
+
+  <!-- ==================== STEP 4 ==================== -->
+  <g transform="translate(20, 506)" filter="url(#shadow-light)">
+    <rect width="820" height="88" rx="14" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.75"/>
+    <!-- Tags -->
+    <rect x="20" y="16" width="62" height="22" rx="6" fill="#F3E8FF"/>
+    <text x="51" y="31" font-size="11" font-weight="700" fill="#7C3AED" text-anchor="middle">STEP 4</text>
+    <rect x="90" y="16" width="95" height="22" rx="6" fill="#EDE9FE"/>
+    <text x="137" y="31" font-size="11" font-weight="700" fill="#6D28D9" text-anchor="middle">REDIS AUDIT</text>
+    <!-- Right Badge -->
+    <rect x="638" y="16" width="162" height="24" rx="12" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1"/>
+    <circle cx="654" cy="28" r="4" fill="#16A34A"/>
+    <text x="666" y="32" font-size="11.5" font-weight="700" fill="#166534">Pub/Sub Verified</text>
+    <!-- Texts -->
+    <text x="20" y="58" font-size="15" font-weight="700" fill="#0F172A">Redis CLI 모니터링 &amp; Pub/Sub 메시지 실시간 캡처</text>
+    <text x="20" y="77" font-size="12" fill="#64748B">docker exec -it basic-acme-redis redis-cli monitor ➔ 채널 발행 이벤트 실시간 캡처 및 메시지 손실 제로 검증</text>
+  </g>
+</svg>
+

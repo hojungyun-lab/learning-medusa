@@ -1,0 +1,91 @@
+name: acme-medusa-prod
+
+services:
+  # ----------------------------------------------------------------------------
+  # Medusa v2 코어 백엔드 프로덕션 애플리케이션
+  # ----------------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: acme-medusa-backend:prod
+    container_name: acme-prod-app
+    restart: unless-stopped
+    ports:
+      # 로컬 개발 환경(:9000)과의 포트 충돌 방지를 위해 호스트 9001번에 매핑
+      - "9001:9000"
+    environment:
+      - NODE_ENV=production
+      - PORT=9000
+      - DATABASE_URL=postgres://medusa_user:medusa_prod_password@postgres:5432/medusa_prod_db
+      - DATABASE_SSL=false
+      - COOKIE_SECURE=false
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=supersecret_jwt_for_production_test_only_acme_123
+      - COOKIE_SECRET=supersecret_cookie_for_production_test_only_acme_123
+      - STORE_CORS=http://localhost:3000,http://localhost:9001
+      - ADMIN_CORS=http://localhost:9001,http://localhost:9000
+      - AUTH_CORS=http://localhost:3000,http://localhost:9001
+      - MEDUSA_ADMIN_EMAIL=admin@acme.local
+      - MEDUSA_ADMIN_PASSWORD=AcmePassword123!
+      - STRIPE_API_KEY=${STRIPE_API_KEY:-sk_test_acme_mock_stripe_key_2026}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-whsec_acme_mock_stripe_webhook_2026}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - prod-network
+
+  # ----------------------------------------------------------------------------
+  # PostgreSQL 16 프로덕션 데이터베이스
+  # ----------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: acme-prod-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: medusa_user
+      POSTGRES_PASSWORD: medusa_prod_password
+      POSTGRES_DB: medusa_prod_db
+    ports:
+      # 로컬 개발용 5432 포트 충돌 방지를 위해 호스트 5433번에 매핑
+      - "5433:5432"
+    volumes:
+      - prod_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medusa_user -d medusa_prod_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - prod-network
+
+  # ----------------------------------------------------------------------------
+  # Redis 7 메시지 브로커 & 캐시
+  # ----------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: acme-prod-redis
+    restart: unless-stopped
+    ports:
+      # 로컬 개발용 6379 포트 충돌 방지를 위해 호스트 6380번에 매핑
+      - "6380:6379"
+    volumes:
+      - prod_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - prod-network
+
+networks:
+  prod-network:
+    driver: bridge
+
+volumes:
+  prod_pgdata:
+  prod_redisdata:

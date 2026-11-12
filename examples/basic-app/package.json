@@ -1,0 +1,30 @@
+{
+  "name": "acme-medusa-basic-app",
+  "version": "1.0.0",
+  "description": "ACME Medusa v2 Basic Core Backend Demo",
+  "scripts": {
+    "build": "medusa build",
+    "dev": "medusa develop",
+    "start": "medusa start",
+    "postinstall": "node -e \"const fs = require('fs'); const path = require('path'); const src = path.resolve('./node_modules/@medusajs/medusa/node_modules/@medusajs/draft-order'); const dst = path.resolve('./node_modules/@medusajs/draft-order'); if (fs.existsSync(src) && !fs.existsSync(dst)) fs.symlinkSync(src, dst, 'junction');\""
+  },
+  "dependencies": {
+    "@medusajs/admin-sdk": "^2.0.0",
+    "@medusajs/cli": "^2.0.0",
+    "@medusajs/framework": "^2.0.0",
+    "@medusajs/icons": "^2.0.0",
+    "@medusajs/medusa": "^2.0.0",
+    "@medusajs/payment-stripe": "^2.22.2",
+    "@medusajs/ui": "^2.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

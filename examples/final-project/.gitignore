@@ -1,0 +1,18 @@
+# 의존성
+node_modules/
+
+# 환경 변수 (보안)
+.env
+.env*.local
+*.local
+!.env.template
+!.env.example
+
+# Next.js 빌드 산출물
+.next/
+out/
+
+# 로그 및 OS
+*.log
+.DS_Store
+

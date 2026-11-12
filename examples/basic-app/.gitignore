@@ -1,0 +1,20 @@
+# 의존성
+node_modules/
+
+# 환경 변수 (보안)
+.env
+.env*.local
+*.local
+!.env.template
+!.env.railway.example
+!.env.example
+
+# 빌드 및 산출물
+.medusa/
+dist/
+*.tsbuildinfo
+
+# 로그 및 OS
+*.log
+.DS_Store
+

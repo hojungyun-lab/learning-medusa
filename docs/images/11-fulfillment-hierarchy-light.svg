@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 525" width="900" height="525" fill="none" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Pretendard', sans-serif;">
+  <defs>
+    <filter id="shadow-light" x="-5%" y="-5%" width="110%" height="115%" filterUnits="objectBoundingBox">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <!-- Level 1: Stock Location & Fulfillment Provider -->
+  <!-- 1. Stock Location -->
+  <g transform="translate(110, 20)" filter="url(#shadow-light)">
+    <rect width="360" height="84" rx="14" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2"/>
+    <rect x="14" y="12" width="105" height="20" rx="6" fill="#EFF6FF"/>
+    <text x="66" y="26" font-size="11" font-weight="700" fill="#2563EB" text-anchor="middle">STOCK LOCATION</text>
+    <text x="14" y="52" font-size="15" font-weight="700" fill="#0F172A">🏢 ACME 서울 중앙물류센터 (m)</text>
+    <text x="14" y="72" font-size="12" fill="#64748B">재고 실물 보관 거점 · sloc_01M6JNWX...</text>
+  </g>
+
+  <!-- Provider Link Connector -->
+  <path d="M 470 62 L 530 62" stroke="#6366F1" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-indigo)"/>
+  <rect x="475" y="46" width="50" height="16" rx="4" fill="#EEF2FF"/>
+  <text x="500" y="58" font-size="9" font-weight="700" fill="#4F46E5" text-anchor="middle">LINK</text>
+
+  <!-- 2. Fulfillment Provider -->
+  <g transform="translate(540, 20)" filter="url(#shadow-light)">
+    <rect width="250" height="84" rx="14" fill="#F8FAFC" stroke="#818CF8" stroke-width="1.5"/>
+    <rect x="14" y="12" width="80" height="20" rx="6" fill="#EEF2FF"/>
+    <text x="54" y="26" font-size="11" font-weight="700" fill="#4F46E5" text-anchor="middle">PROVIDER</text>
+    <text x="14" y="52" font-size="14.5" font-weight="700" fill="#1E293B">🚚 manual_manual</text>
+    <text x="14" y="72" font-size="12" fill="#64748B">택배사 API / 수동 출고 연동</text>
+  </g>
+
+  <!-- Connector: Stock Location -> Fulfillment Set -->
+  <path d="M 290 104 L 290 130 Q 290 145 315 145 L 430 145 Q 450 145 450 160 L 450 168" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="330" y="135" width="80" height="20" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="370" y="149" font-size="10.5" font-weight="600" fill="#1D4ED8" text-anchor="middle">1:N 소유 관계</text>
+
+  <!-- Level 2: Fulfillment Set -->
+  <g transform="translate(250, 175)" filter="url(#shadow-light)">
+    <rect width="400" height="78" rx="14" fill="#FFFFFF" stroke="#0284C7" stroke-width="2"/>
+    <rect x="14" y="12" width="115" height="20" rx="6" fill="#F0F9FF"/>
+    <text x="71" y="26" font-size="11" font-weight="700" fill="#0284C7" text-anchor="middle">FULFILLMENT SET</text>
+    <text x="14" y="50" font-size="15" font-weight="700" fill="#0F172A">📦 ACME 국내 배송 세트 (m)</text>
+    <text x="14" y="69" font-size="12" fill="#64748B">출고 유형: shipping (택배 및 화물 배송)</text>
+  </g>
+
+  <!-- Connector: Fulfillment Set -> Service Zone -->
+  <path d="M 450 253 L 450 285" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="410" y="258" width="80" height="18" rx="4" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
+  <text x="450" y="271" font-size="10" font-weight="600" fill="#0369A1" text-anchor="middle">지역 설정</text>
+
+  <!-- Level 3: Service Zone -->
+  <g transform="translate(250, 292)" filter="url(#shadow-light)">
+    <rect width="400" height="78" rx="14" fill="#FFFFFF" stroke="#0D9488" stroke-width="2"/>
+    <rect x="14" y="12" width="95" height="20" rx="6" fill="#F0FDFA"/>
+    <text x="61" y="26" font-size="11" font-weight="700" fill="#0D9488" text-anchor="middle">SERVICE ZONE</text>
+    <text x="14" y="50" font-size="15" font-weight="700" fill="#0F172A">🗺️ 대한민국 전역 (m)</text>
+    <text x="14" y="69" font-size="12" fill="#64748B">도달 가능 지리 구역: geo_zones [KR]</text>
+  </g>
+
+  <!-- Connector: Service Zone -> 3 Shipping Options (Fork) -->
+  <!-- Center line down -->
+  <path d="M 450 370 L 450 395" stroke="#0D9488" stroke-width="2"/>
+  <!-- Branch Left (Option 1) -->
+  <path d="M 450 395 Q 450 405 435 405 L 175 405 Q 160 405 160 415 L 160 422" stroke="#0D9488" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <!-- Branch Center (Option 2) -->
+  <path d="M 450 395 L 450 422" stroke="#0D9488" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <!-- Branch Right (Option 3) -->
+  <path d="M 450 395 Q 450 405 465 405 L 725 405 Q 740 405 740 415 L 740 422" stroke="#0D9488" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Level 4: Shipping Options (3종) -->
+  <!-- Option 1: Standard Parcel -->
+  <g transform="translate(30, 428)" filter="url(#shadow-light)">
+    <rect width="260" height="88" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <rect x="12" y="10" width="62" height="18" rx="4" fill="#F1F5F9"/>
+    <text x="43" y="23" font-size="10" font-weight="700" fill="#475569" text-anchor="middle">표준 배송</text>
+    <text x="12" y="44" font-size="13.5" font-weight="700" fill="#0F172A">🚛 CJ대한통운 일반 택배 (m)</text>
+    <text x="12" y="63" font-size="11.5" font-weight="700" fill="#2563EB">3,000 KRW</text>
+    <text x="12" y="78" font-size="10.5" fill="#64748B">영업일 2~3일 소요 (전국 기본)</text>
+  </g>
+
+  <!-- Option 2: Coldchain Dawn -->
+  <g transform="translate(320, 428)" filter="url(#shadow-light)">
+    <rect width="260" height="88" rx="12" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+    <rect x="12" y="10" width="62" height="18" rx="4" fill="#DCFCE7"/>
+    <text x="43" y="23" font-size="10" font-weight="700" fill="#15803D" text-anchor="middle">새벽 특급</text>
+    <text x="12" y="44" font-size="13.5" font-weight="700" fill="#14532D">❄️ F&amp;B 신선 새벽 배송 (m)</text>
+    <text x="12" y="63" font-size="11.5" font-weight="700" fill="#16A34A">6,000 KRW</text>
+    <text x="12" y="78" font-size="10.5" fill="#4B5563">익일 07시 전 도착 (원두 신선도)</text>
+  </g>
+
+  <!-- Option 3: B2B Freight Free -->
+  <g transform="translate(610, 428)" filter="url(#shadow-light)">
+    <rect width="260" height="88" rx="12" fill="#FAF5FF" stroke="#A855F7" stroke-width="2"/>
+    <rect x="12" y="10" width="62" height="18" rx="4" fill="#F3E8FF"/>
+    <text x="43" y="23" font-size="10" font-weight="700" fill="#7E22CE" text-anchor="middle">대량 무료</text>
+    <text x="12" y="44" font-size="13.5" font-weight="700" fill="#581C87">📦 B2B 화물 무료 직배송 (m)</text>
+    <text x="12" y="63" font-size="11.5" font-weight="700" fill="#9333EA">0 KRW (무료 배송)</text>
+    <text x="12" y="78" font-size="10.5" fill="#6B7280">10박스 이상 용차 파레트 배송</text>
+  </g>
+</svg>
+

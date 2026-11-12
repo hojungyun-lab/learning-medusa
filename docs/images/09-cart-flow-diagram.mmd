@@ -1,0 +1,9 @@
+flowchart LR
+    Step1["<b>① 상품 카탈로그</b><br/>/products 접속"] --> Step2["<b>② 상세 보기 클릭</b><br/>/products/:handle"]
+    Step2 --> Step3["<b>③ 수량 조절 및 담기</b><br/>[🛒 장바구니 담기]"]
+    Step3 --> Step4["<b>④ Server Action</b><br/>Medusa Cart 생성<br/>HTTP 쿠키 동기화"]
+    Step4 --> Step5["<b>⑤ 장바구니 검증</b><br/>/cart 금액 실시간 계산<br/>F5 새로고침 세션 유지"]
+
+    classDef default fill:#F8FAFC,stroke:#94A3B8,stroke-width:1.5px,color:#1E293B
+    classDef highlight fill:#EFF6FF,stroke:#2563EB,stroke-width:2px,color:#1E3A8A
+    class Step3,Step4 highlight
